@@ -100,6 +100,31 @@ if 'nodes' not in st.session_state:
 if 'referrals' not in st.session_state:
     st.session_state.referrals = []
 
+# -------------------- SAMPLE DATA BUTTON --------------------
+st.info("💡 Click to load a demo hospital network for quick visualization.")
+
+if st.button("📂 Load Sample Data"):
+    if st.session_state.nodes or st.session_state.referrals:
+        st.warning("⚠️ Existing data will be replaced!")
+
+    st.session_state.nodes = [
+        "Dr. A", "Dr. B", "Dr. C", "Dr. D", "Dr. E"
+    ]
+
+    st.session_state.referrals = [
+        ("Dr. A", "Dr. B"),
+        ("Dr. A", "Dr. C"),
+        ("Dr. A", "Dr. D"),
+        ("Dr. A", "Dr. E"),
+        ("Dr. B", "Dr. C"),
+        ("Dr. C", "Dr. D")
+    ]
+
+    st.success("✅ Sample data loaded successfully!")
+    st.rerun()
+
+st.divider()
+
 # -------------------- ADD DOCTORS --------------------
 st.header("➕ Add Data")
 new_node = st.text_input("Enter Doctor Name:", placeholder="e.g. Dr. A")
